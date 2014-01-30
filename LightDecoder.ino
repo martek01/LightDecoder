@@ -20,7 +20,7 @@
 // Bytes per Color: 1=Red, 2=Green, 3=Blue, 4=FadeDuration
 #define CV_FIRST_COLOR CV_CUSTOM_BASE
 #define CV_SECOND_COLOR CV_CUSTOM_BASE + COLOR_SIZE
-#define CV_THRID_COLOR CV_CUSTOM_BASE + 2 * COLOR_SIZE
+#define CV_THIRD_COLOR CV_CUSTOM_BASE + 2 * COLOR_SIZE
 #define CV_FOURTH_COLOR CV_CUSTOM_BASE + 3 * COLOR_SIZE
 #define CV_FIFTH_COLOR CV_CUSTOM_BASE + 4 * COLOR_SIZE
 #define CV_SIXTH_COLOR CV_CUSTOM_BASE + 5 * COLOR_SIZE
@@ -66,6 +66,36 @@ uint8_t factoryDefaultCVIndex = 0;
 CVPair factoryDefaultCVs[] = {
   {CV_ACCESSORY_DECODER_ADDRESS_LSB, 1},
   {CV_ACCESSORY_DECODER_ADDRESS_MSB, 0},
+  
+  {CV_FIRST_COLOR, 255},
+  {CV_FIRST_COLOR + 1, 0},
+  {CV_FIRST_COLOR + 2, 0},
+  {CV_FIRST_COLOR + 3, 30},
+  
+  {CV_SECOND_COLOR, 0},
+  {CV_SECOND_COLOR + 1, 255},
+  {CV_SECOND_COLOR + 2, 0},
+  {CV_SECOND_COLOR + 3, 30},
+  
+  {CV_THIRD_COLOR, 0},
+  {CV_THIRD_COLOR + 1, 0},
+  {CV_THIRD_COLOR + 2, 255},
+  {CV_THIRD_COLOR + 3, 30},
+  
+  {CV_FOURTH_COLOR, 255},
+  {CV_FOURTH_COLOR + 1, 225},
+  {CV_FOURTH_COLOR + 2, 0},
+  {CV_FOURTH_COLOR + 3, 60},
+  
+  {CV_FIFTH_COLOR, 175},
+  {CV_FIFTH_COLOR + 1, 0},
+  {CV_FIFTH_COLOR + 2, 100},
+  {CV_FIFTH_COLOR + 3, 120},
+  
+  {CV_SIXTH_COLOR, 0},
+  {CV_SIXTH_COLOR + 1, 0},
+  {CV_SIXTH_COLOR + 2, 0},
+  {CV_SIXTH_COLOR + 3, 0},
 };
 
 /*
@@ -75,6 +105,10 @@ void notifyCVResetFactoryDefault() {
   // Make FactoryDefaultCVIndex non-zero and equal to num CV's to be reset 
   // to flag to the loop() function that a reset to Factory Defaults needs to be done
   factoryDefaultCVIndex = sizeof(factoryDefaultCVs)/sizeof(CVPair);
+  
+  #ifdef DEBUG
+    Serial.println("notifyCVResetFactoryDefault");
+  #endif
 };
 
 /*
